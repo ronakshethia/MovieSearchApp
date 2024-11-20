@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using MauiAppSample.Utility;
 
 namespace MauiAppSample.ViewModels;
 
@@ -11,6 +12,7 @@ public partial class BaseViewModel: ObservableObject
 	public BaseViewModel()
 	{
 		WeakReferenceMessenger.Default.RegisterAll(this);
+		IsInternetAvailable = Connectivity.NetworkAccess == NetworkAccess.Internet;
         Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
     }
 
@@ -38,4 +40,12 @@ public partial class BaseViewModel: ObservableObject
 	{
 
 	}
+
+	public async Task DisplayNoInternetView()
+	{
+		if (!IsInternetAvailable)
+		{
+			await Shell.Current.GoToAsync(Constants.NavigationRoutes.NoInternet);
+		}
+    }
 }

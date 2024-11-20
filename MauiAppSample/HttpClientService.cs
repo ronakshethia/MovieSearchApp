@@ -13,13 +13,33 @@ namespace MauiAppSample
         // Constructor to initialize HttpClient
         public HttpClientService()
         {
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri(ServicesUrl.BaseUrl)
-            };
 
-            // Default headers
-            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            try
+            {
+                //TODO NEED TO CHANGE THIS LOGIC BREAKS WHEN NO IC THOWS EXCEPTION 
+                _httpClient = new HttpClient
+                {
+                    BaseAddress = new Uri(ServicesUrl.BaseUrl)
+                };
+
+                // Default headers
+                _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            }
+            catch (UriFormatException uriEx)
+            {
+                Console.WriteLine($"Invalid URI: {uriEx.Message}");
+                throw; // Re-throwing to let the caller handle this critical issue
+            }
+            catch (HttpRequestException httpEx)
+            {
+                Console.WriteLine($"HTTP initialization error: {httpEx.Message}");
+                throw; // Re-throwing to let the caller handle this
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error during HttpClient initialization: {ex.Message}");
+                throw; // Re-throwing to avoid silent failure
+            }
         }
 
         public async Task<T> GetAsync<T>(string endpoint)

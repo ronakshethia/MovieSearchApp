@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace MauiAppSample.ViewModels;
 
-[QueryProperty(nameof(BarcodeResult), Utility.Constants.NavigationParameterKey.BarCodeResult)]
+//[QueryProperty(nameof(BarcodeResult), Utility.Constants.NavigationParameterKey.BarCodeResult)]
 public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakReferenceValueMessage>
 {
     #region PROPERTIES 
@@ -63,12 +63,7 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
     [RelayCommand]
     public async Task SearchMovies()
     {
-        if (!IsInternetAvailable)
-        {
-            await Shell.Current.GoToAsync(Constants.NavigationRoutes.NoInternet);
-            // Optionally show an error message or notification here
-            return;
-        }
+        await DisplayNoInternetView();
 
         HasSearched = false;
 
@@ -106,6 +101,8 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
     [RelayCommand]
     private async Task RequestMoreMovies()
     {
+        await DisplayNoInternetView();
+
         IsLoadingMoreMovies = true;
         var newItems = await _movieService.SearchMoviesAsync(SearchText,_currentPage);
         //TODO - Revisit this code for improvement
