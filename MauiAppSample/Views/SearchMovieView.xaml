@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiAppSample.ViewModels" 
+             x:Class="MauiAppSample.Views.SearchMovieView"
+             xmlns:models="clr-namespace:MauiAppSample.Models"
+             x:DataType="viewModels:SearchMovieViewModel"
+             xmlns:views="clr-namespace:MauiAppSample.Views"
+             x:TypeArguments="viewModels:SearchMovieViewModel"
+             Title="SearchMovieView">
+    <Grid Padding="10" RowDefinitions="Auto,*,Auto">
+        <SearchBar Text="{Binding SearchText}" Placeholder="Search for a movie..." SearchCommand="{Binding SearchMoviesCommand}"/>
+        <Grid
+            Grid.Row="1"
+            >
+            <Label Text="{Binding SearchText, StringFormat='No movies found with the name {0}'}"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" IsVisible="{Binding HasSearched}"
+               FontSize="18"
+               TextColor="Gray">
+            </Label>
+        <CollectionView ItemsSource="{Binding Movies}" x:Name="col"  
+                        RemainingItemsThreshold="2"
+                        RemainingItemsThresholdReachedCommand="{Binding RequestMoreMoviesCommand, Mode=OneTime}" 
+                        SelectionChangedCommand="{Binding SelectedMovieChangedCommand}"
+                        SelectionChangedCommandParameter="{Binding Source={x:Reference col},Path=SelectedItem}"
+                        SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:MoviesResult">
+                        <VerticalStackLayout InputTransparent="True">
+                        <Frame CornerRadius="12" Padding="5" Margin="10" BorderColor="LightGray" HasShadow="True" BackgroundColor="White">
+                            <Grid ColumnDefinitions="50,Auto" ColumnSpacing="20">
+                            <Image Aspect="AspectFit" >
+                                <Image.Source>
+                                    <UriImageSource Uri="https://aka.ms/campus.jpg"
+                                         CacheValidity="10:00:00:00" />
+                                </Image.Source>
+                            </Image>
+                            <Label Text="{Binding Title}" TextColor="Black" Grid.Column="1"/>
+                            </Grid>
+                        </Frame>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            <CollectionView.Header>
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <ActivityIndicator IsRunning="{Binding IsSearchingMovies}" 
+                     IsVisible="{Binding IsSearchingMovies}" />
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.Footer>
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding IsLoadingMoreMovies}">
+                    <ActivityIndicator IsRunning="{Binding IsLoadingMoreMovies}" Color="Red"
+                                    />
+                </StackLayout>
+            </CollectionView.Footer>
+        </CollectionView>
+        </Grid>
+        <Button Text="Scan QR" Command="{Binding ScanQRCommand}" Grid.Row="2" />
+    </Grid>
+</views:BaseContentPage>

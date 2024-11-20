@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppSample.Views.ScannerPage"
+             xmlns:views="clr-namespace:MauiAppSample.Views"
+             xmlns:viewModels="clr-namespace:MauiAppSample.ViewModels"
+             xmlns:gv="clr-namespace:BarcodeScanner.Mobile;assembly=BarcodeScanner.Mobile.Maui"
+             x:TypeArguments="viewModels:ScannerViewModel"
+             x:DataType="viewModels:ScannerViewModel"
+             Title="ScannerPage">
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <!--VirbationOnDetected: Indicate the device will vibrate or not when detected barcode, default is True
+		 TorchOn: Indicate the torch will on or not when the view appear, default is False
+		 IsScanning : Indicate whether the device will start scanning after it is opened, default is True
+		 RequestedFPS: Affect Android only, remove it if you want a default value (https://developers.google.com/android/reference/com/google/android/gms/vision/CameraSource.Builder.html#public-camerasource.builder-setrequestedfps-float-fps)
+		 ScanInterval: Scan interval for iOS, default is 500ms and the minimum is 100ms, please be reminded that double scanning may be occurred if it is too small
+		 -->
+            <gv:CameraView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                           OnDetectedCommand="{Binding OnDetectCommand}" 
+                            IsScanning="{Binding IsScanning}" 
+                            VibrationOnDetected="True"
+                           x:Name="Camera"/>
+
+        </ScrollView>
+    </ContentPage.Content>
+</views:BaseContentPage>

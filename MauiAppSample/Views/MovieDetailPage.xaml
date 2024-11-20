@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppSample.Views.MovieDetailPage"
+             xmlns:views="clr-namespace:MauiAppSample.Views"
+             xmlns:viewModels="clr-namespace:MauiAppSample.ViewModels"
+             x:TypeArguments="viewModels:MovieDetailsViewModel"
+             Title="MovieDetailPage">
+    <StackLayout>
+        <Label Text="{Binding Movie.Title}" />
+        <Label Text="{Binding Movie.ReleaseDate}" />
+        <Label Text="{Binding Movie.OriginalLanguage}" />
+    </StackLayout>
+    
+</views:BaseContentPage>
