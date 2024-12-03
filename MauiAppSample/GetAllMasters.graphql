@@ -1,6 +1,0 @@
-﻿query GetAllMasters
-{
-   allAppMenus{
-     menuItemId, menuItemName
-   }
-}

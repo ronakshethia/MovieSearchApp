@@ -34,11 +34,11 @@ public static partial class MauiProgram
         // Add Services
         //builder.Services.AddSingleton<GraphQLService>();
 
-        builder.Services.AddMauiAppSampleApi()
-                        .ConfigureHttpClient(client => client.BaseAddress = GetGraphQLUri(graphQLUri),
-                                                clientBuilder => clientBuilder.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
-                                                    .AddStandardResilienceHandler(options => options.Retry = new MobileHttpRetryStrategyOptions()))
-                        .ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(graphQLUri));
+        //builder.Services.AddMauiAppSampleApi()
+        //                .ConfigureHttpClient(client => client.BaseAddress = GetGraphQLUri(graphQLUri),
+        //                                        clientBuilder => clientBuilder.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
+        //                                            .AddStandardResilienceHandler(options => options.Retry = new MobileHttpRetryStrategyOptions()))
+        //                .ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(graphQLUri));
 
         return builder.Build();
     }

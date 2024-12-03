@@ -40,10 +40,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="MauiProgram.macios.cs" />
+	  <Compile Remove="Services\GraphQLService.cs" />
 	  <Compile Remove="Utility\CommandBase.cs" />
-	</ItemGroup>
-	<ItemGroup>
-	  <GraphQL Remove="GetAllMasters.graphql" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="BarcodeScanner.Mobile.Maui" Version="8.0.0" />
