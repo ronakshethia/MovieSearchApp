@@ -44,6 +44,9 @@
 	  <Compile Remove="Utility\CommandBase.cs" />
 	</ItemGroup>
 	<ItemGroup>
+	  <GraphQL Remove="Masters.graphql" />
+	</ItemGroup>
+	<ItemGroup>
 	  <PackageReference Include="BarcodeScanner.Mobile.Maui" Version="8.0.0" />
 	  <PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />

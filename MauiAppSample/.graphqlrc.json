@@ -6,6 +6,7 @@
       "name": "MauiAppSample",
       "namespace": "MauiAppSampleApi",
       "url": "https://localhost:5001/graphql",
+      "dependencyInjection": true,
       "records": {
         "inputs": false,
         "entities": false

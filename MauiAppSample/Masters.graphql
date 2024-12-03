@@ -1,4 +1,4 @@
-﻿query GetAllMasters
+﻿query GetAllAppMasters
 {
    allAppMenus{
      menuItemId, menuItemName
