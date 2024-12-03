@@ -4,6 +4,7 @@
   "extensions": {
     "strawberryShake": {
       "name": "MauiAppSample",
+      "namespace": "MauiAppSampleApi",
       "url": "https://localhost:5001/graphql",
       "records": {
         "inputs": false,
