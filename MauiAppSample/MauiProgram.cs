@@ -14,12 +14,17 @@ public static partial class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
-        var graphQLUri = new Uri("http://localhost:5001/graphql");
+        //var graphQLUri = new Uri("http://192.168.176.1:5001/graphql/");
+        //var graphQLUri = new Uri("http://localhost:5001/graphql/");
+        var graphQLUri = new Uri("http://192.168.176.1:5000/graphql/");
 
         var builder = MauiApp.CreateBuilder()
                         .UseMauiApp<App>()
                         .UseMauiCommunityToolkit()
                         .UseMauiCommunityToolkitMarkup()
+                        .RegisterServices()
+            .RegisterViewModels()
+            .RegisterViews()
                         .ConfigureFonts(fonts =>
                         {
                             fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -32,13 +37,13 @@ public static partial class MauiProgram
                         });
 
         // Add Services
-        //builder.Services.AddSingleton<GraphQLService>();
+        builder.Services.AddSingleton<GraphQLService>();
 
-        //builder.Services.AddMauiAppSample()
-        //                .ConfigureHttpClient(client => client.BaseAddress = GetGraphQLUri(graphQLUri),
-        //                                        clientBuilder => clientBuilder.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
-        //                                            .AddStandardResilienceHandler(options => options.Retry = new MobileHttpRetryStrategyOptions()))
-        //                .ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(graphQLUri));
+        builder.Services.AddMauiAppSampleClient()
+                        .ConfigureHttpClient(client => client.BaseAddress = graphQLUri,
+                                                clientBuilder => clientBuilder.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
+                                                    .AddStandardResilienceHandler(options => options.Retry = new MobileHttpRetryStrategyOptions()));
+                        //.ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(graphQLUri));
 
         return builder.Build();
     }

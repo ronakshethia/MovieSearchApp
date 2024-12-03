@@ -40,7 +40,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="MauiProgram.macios.cs" />
-	  <Compile Remove="Services\GraphQLService.cs" />
 	  <Compile Remove="Utility\CommandBase.cs" />
 	</ItemGroup>
 	<ItemGroup>

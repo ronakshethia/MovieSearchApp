@@ -3,7 +3,7 @@
   "documents": "**/*.graphql",
   "extensions": {
     "strawberryShake": {
-      "name": "MauiAppSample",
+      "name": "MauiAppSampleClient",
       "namespace": "MauiAppSampleApi",
       "url": "https://localhost:5001/graphql",
       "dependencyInjection": true,

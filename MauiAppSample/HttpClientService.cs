@@ -16,14 +16,14 @@ namespace MauiAppSample
 
             try
             {
-                //TODO NEED TO CHANGE THIS LOGIC BREAKS WHEN NO IC THOWS EXCEPTION 
-                _httpClient = new HttpClient
-                {
-                    BaseAddress = new Uri(ServicesUrl.BaseUrl)
-                };
+                ////TODO NEED TO CHANGE THIS LOGIC BREAKS WHEN NO IC THOWS EXCEPTION 
+                //_httpClient = new HttpClient
+                //{
+                //    BaseAddress = new Uri(ServicesUrl.BaseUrl)
+                //};
 
-                // Default headers
-                _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //// Default headers
+                //_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             }
             catch (UriFormatException uriEx)
             {

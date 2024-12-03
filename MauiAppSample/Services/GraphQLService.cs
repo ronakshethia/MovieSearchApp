@@ -1,19 +1,20 @@
-﻿using StrawberryShake;
+﻿using MauiAppSampleApi;
+using StrawberryShake;
 
 namespace MauiAppSample.Services
 {
     internal class GraphQLService
     {
-        readonly MauiAppSample _client;
+        readonly MauiAppSampleClient _client;
 
-        public GraphQLService(MauiAppSample client)
+        public GraphQLService(MauiAppSampleClient client)
         {
             _client = client;
         }
 
-        public async IAsyncEnumerable<IGetAllMasters_AllAppMenus> GetAllMasters()
+        public async IAsyncEnumerable<IGetAllAppMasters_AllAppMenus> GetAllMasters()
         {
-            var result = await _client.GetAllMasters.ExecuteAsync().ConfigureAwait(false);
+            var result = await _client.GetAllAppMasters.ExecuteAsync().ConfigureAwait(false);
             result.EnsureNoErrors();
 
             foreach (var menus in result.Data?.AllAppMenus ?? [])

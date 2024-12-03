@@ -5,6 +5,10 @@ using MauiAppSample.Messengers;
 using MauiAppSample.Models;
 using MauiAppSample.Services;
 using MauiAppSample.Utility;
+using MauiAppSampleApi;
+using Microsoft.Extensions.DependencyInjection;
+using StrawberryShake;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace MauiAppSample.ViewModels;
@@ -64,6 +68,9 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
     [RelayCommand]
     public async Task SearchMovies()
     {
+
+        return;
+
         await DisplayNoInternetView();
 
         HasSearched = false;
@@ -102,6 +109,8 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
     [RelayCommand]
     private async Task RequestMoreMovies()
     {
+
+        return;
         await DisplayNoInternetView();
 
         IsLoadingMoreMovies = true;
@@ -126,11 +135,46 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
     [RelayCommand]
     public async Task ScanQR()
     {
-        bool allowed = await BarcodeScanner.Mobile.Methods.AskForRequiredPermission();
-        if (allowed)
+        //try
+        //{
+
+        // var graphQLUri = new Uri("http://192.168.176.1:5000/graphql/");
+
+        // IServiceCollection serviceDescriptors = new ServiceCollection();
+        // serviceDescriptors.AddMauiAppSampleClient().ConfigureHttpClient(c=> c.BaseAddress = graphQLUri);
+
+        //IServiceProvider serviceProvider = serviceDescriptors.BuildServiceProvider();
+
+        // IMauiAppSampleClient getAllAppMasters_AllAppMenus = serviceProvider.GetRequiredService<IMauiAppSampleClient>();
+
+        // var result = await getAllAppMasters_AllAppMenus.GetAllAppMasters.ExecuteAsync();
+
+        // if (result.IsErrorResult())
+        // {
+
+        // }
+        // else
+        // {
+        //     var res = result.Data;
+        // }
+
+        // }
+        // catch (Exception ex)
+        // {
+
+        // }
+
+        var services = Application.Current.Handler.MauiContext?.Services.GetService<GraphQLService>();
+
+        await foreach (var book in services.GetAllMasters().ConfigureAwait(false))
         {
-            await Shell.Current.GoToAsync(Constants.NavigationRoutes.Scanner);
         }
+
+        //bool allowed = await BarcodeScanner.Mobile.Methods.AskForRequiredPermission();
+        //if (allowed)
+        //{
+        //    await Shell.Current.GoToAsync(Constants.NavigationRoutes.Scanner);
+        //}
     }
 
     [RelayCommand]
@@ -162,7 +206,6 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
     public override void OnDisappearing()
     {
         base.OnDisappearing();
-        var res = BarcodeResult;
     }
 
     #endregion

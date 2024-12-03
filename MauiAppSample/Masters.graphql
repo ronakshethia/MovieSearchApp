@@ -1,6 +1,6 @@
 ﻿query GetAllAppMasters
 {
    allAppMenus{
-     menuItemId, menuItemName
+     menuItemId, menuItemName, sequence
    }
 }
