@@ -72,6 +72,9 @@
 	  <Folder Include="Messengers\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Include="Queries\AppsMaster.graphql" />
+	</ItemGroup>
+	<ItemGroup>
 	  <MauiXaml Update="Views\NoInternetPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -84,6 +87,10 @@
   <PropertyGroup Condition="( '$(TargetFramework)' == 'net8.0-ios' )">
     <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
     <PlatformTarget>arm64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <StrawberryShake_State>$(MSBuildProjectExtensionsPath)berry</StrawberryShake_State>
   </PropertyGroup>
   
 </Project>

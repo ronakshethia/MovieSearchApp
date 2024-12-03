@@ -44,6 +44,7 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
 
     #region CONSTRUCTORS
 
+
     public SearchMovieViewModel(IMovieService movieService)
     {
         _movieService = movieService;
@@ -155,8 +156,8 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
 
     public override void OnAppearing()
     {
-        base.OnAppearing();
-
+        //var services = Application.Current.Handler.MauiContext?.Services.GetService<GraphQLService>();
+        //var ee = services.GetAllMasters();
     }
     public override void OnDisappearing()
     {
