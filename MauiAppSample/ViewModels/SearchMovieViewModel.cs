@@ -153,6 +153,11 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
 
     #region OVERRIDES
 
+    public override void OnAppearing()
+    {
+        base.OnAppearing();
+
+    }
     public override void OnDisappearing()
     {
         base.OnDisappearing();

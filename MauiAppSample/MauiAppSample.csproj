@@ -39,12 +39,26 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Compile Remove="MauiProgram.macios.cs" />
+	  <Compile Remove="Utility\CommandBase.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <GraphQL Remove="GetAllMasters.graphql" />
+	</ItemGroup>
+	<ItemGroup>
 	  <PackageReference Include="BarcodeScanner.Mobile.Maui" Version="8.0.0" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
 	  <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
 	  <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.100" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	</ItemGroup>
+	  <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.22.6" />
+    <PackageReference Include="StrawberryShake.Maui" Version="14.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="9.0.0" />
+    <PackageReference Include="CommunityToolkit.Maui.Markup" Version="4.0.0" />
+  </ItemGroup>
 	<ItemGroup>
 	  <None Remove="Services\" />
 	  <None Remove="Models\" />
@@ -54,7 +68,8 @@
 	  <None Remove="Messengers\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Services\" />
+	  <Folder Include="Graphs\" />
+	  <Folder Include="Queries\" />
 	  <Folder Include="Utility\" />
 	  <Folder Include="Messengers\" />
 	</ItemGroup>
