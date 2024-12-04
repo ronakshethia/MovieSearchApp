@@ -1,0 +1,16 @@
+﻿query GetAppMasters{
+  allMasters{
+    productRepairStatusList{
+      key,
+      value
+    },
+    productTypesList{
+      key,
+      value
+    },
+    ticketStatusTables{
+      key,
+      value
+    }
+  }
+}

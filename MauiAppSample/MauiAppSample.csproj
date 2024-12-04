@@ -43,6 +43,7 @@
 	  <Compile Remove="Utility\CommandBase.cs" />
 	</ItemGroup>
 	<ItemGroup>
+	  <GraphQL Remove="AppsAllMasters.graphql" />
 	  <GraphQL Remove="Masters.graphql" />
 	</ItemGroup>
 	<ItemGroup>
@@ -72,9 +73,6 @@
 	  <Folder Include="Queries\" />
 	  <Folder Include="Utility\" />
 	  <Folder Include="Messengers\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Include="Queries\AppsMaster.graphql" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiXaml Update="Views\NoInternetPage.xaml">

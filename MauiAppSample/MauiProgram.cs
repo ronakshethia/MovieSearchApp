@@ -16,7 +16,7 @@ public static partial class MauiProgram
     {
         //var graphQLUri = new Uri("http://192.168.176.1:5001/graphql/");
         //var graphQLUri = new Uri("http://localhost:5001/graphql/");
-        var graphQLUri = new Uri("http://192.168.176.1:5000/graphql/");
+        var graphQLUri = new Uri("http://192.168.100.142:5000/graphql/");
 
         var builder = MauiApp.CreateBuilder()
                         .UseMauiApp<App>()

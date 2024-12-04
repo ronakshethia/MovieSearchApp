@@ -5,7 +5,7 @@ using MauiAppSample.Messengers;
 using MauiAppSample.Models;
 using MauiAppSample.Services;
 using MauiAppSample.Utility;
-using MauiAppSampleApi;
+//using MauiAppSampleApi;
 using Microsoft.Extensions.DependencyInjection;
 using StrawberryShake;
 using System.Collections.Generic;
@@ -166,9 +166,14 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
 
         var services = Application.Current.Handler.MauiContext?.Services.GetService<GraphQLService>();
 
-        await foreach (var book in services.GetAllMasters().ConfigureAwait(false))
-        {
-        }
+        var appMenu = await services.GetAppMenusAsync();
+        var listA = appMenu.AppMenuItems;
+
+        var AppMasters =  await services.GetAppsAllMastersAsync();
+        var list1 = AppMasters.TicketStatusList;
+        var list2 = AppMasters.ProductRepairStatusList;
+        var list3 = AppMasters.ProductTypesList;
+
 
         //bool allowed = await BarcodeScanner.Mobile.Methods.AskForRequiredPermission();
         //if (allowed)

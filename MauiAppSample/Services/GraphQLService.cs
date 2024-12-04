@@ -1,4 +1,5 @@
-﻿using MauiAppSampleApi;
+﻿using MauiAppSample.Models;
+using MauiAppSampleApi;
 using StrawberryShake;
 
 namespace MauiAppSample.Services
@@ -12,13 +13,28 @@ namespace MauiAppSample.Services
             _client = client;
         }
 
-        public async IAsyncEnumerable<IGetAllAppMasters_AllAppMenus> GetAllMasters()
+        public async Task<AppMenu> GetAppMenusAsync()
         {
+            List<AppMenuItems> appMenuItems = new List<AppMenuItems>();
             var result = await _client.GetAllAppMasters.ExecuteAsync().ConfigureAwait(false);
             result.EnsureNoErrors();
+            return new AppMenu(result.Data?.AllAppMenus);
+        }
 
-            foreach (var menus in result.Data?.AllAppMenus ?? [])
-                yield return menus;
+
+        public async Task<AppMasters> GetAppsAllMastersAsync()
+        {
+            var result = await _client.GetAppMasters.ExecuteAsync().ConfigureAwait(false);
+            result.EnsureNoErrors();
+
+            var masters = result.Data.AllMasters;
+
+            AppMasters appMasters = new AppMasters(
+                masters.TicketStatusTables, 
+                masters.ProductRepairStatusList, 
+                masters.ProductTypesList);
+
+            return appMasters;
         }
 
     }
