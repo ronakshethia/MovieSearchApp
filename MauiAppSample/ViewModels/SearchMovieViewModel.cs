@@ -202,7 +202,6 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
             }
         });
 
-
         var customerDetails1 = await services.GetCustomerDetailsByPhoneNumber("46436436");
 
 
