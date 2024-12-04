@@ -1,0 +1,10 @@
+﻿mutation CreateCustomer($customerInput: CustomerTableInput) 
+{
+  addNewCustomer(customerTable: $customerInput) {
+    id
+    name
+    phoneNumber
+    altPhoneNumber
+    createdOn
+  }
+}

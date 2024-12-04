@@ -5,6 +5,7 @@ using CommunityToolkit.Maui.Markup;
 using MauiAppSample.Services;
 using MauiAppSample.ViewModels;
 using MauiAppSample.Views;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Http.Resilience;
 using Polly;
 
@@ -17,6 +18,7 @@ public static partial class MauiProgram
         //var graphQLUri = new Uri("http://192.168.176.1:5001/graphql/");
         //var graphQLUri = new Uri("http://localhost:5001/graphql/");
         var graphQLUri = new Uri("http://192.168.100.142:5000/graphql/");
+
 
         var builder = MauiApp.CreateBuilder()
                         .UseMauiApp<App>()
@@ -36,6 +38,8 @@ public static partial class MauiProgram
                             handlers.AddBarcodeScannerHandler();
                         });
 
+        string graphqlApiUrl = builder.Configuration.GetValue<string>("GRAPHQL_API_URL");
+
         // Add Services
         builder.Services.AddSingleton<GraphQLService>();
 
@@ -43,7 +47,9 @@ public static partial class MauiProgram
                         .ConfigureHttpClient(client => client.BaseAddress = graphQLUri,
                                                 clientBuilder => clientBuilder.ConfigurePrimaryHttpMessageHandler(GetHttpMessageHandler)
                                                     .AddStandardResilienceHandler(options => options.Retry = new MobileHttpRetryStrategyOptions()));
-                        //.ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(graphQLUri));
+        //.ConfigureWebSocketClient(client => client.Uri = GetGraphQLStreamingUri(graphQLUri));
+
+        builder.Services.AddHostedService<StartUpService>();
 
         return builder.Build();
     }
@@ -60,7 +66,7 @@ public static partial class MauiProgram
         mauiAppBuilder.Services.AddTransient<SearchMovieViewModel>();
         mauiAppBuilder.Services.AddTransient<MovieDetailsViewModel>();
         mauiAppBuilder.Services.AddTransient<ScannerViewModel>();
-        mauiAppBuilder.Services.AddTransient<NoInternetPage>();
+        mauiAppBuilder.Services.AddTransient<NoInternetViewModel>();
         return mauiAppBuilder;
     }
 
@@ -69,7 +75,7 @@ public static partial class MauiProgram
         mauiAppBuilder.Services.AddTransient<SearchMovieView>();
         mauiAppBuilder.Services.AddTransient<MovieDetailPage>();
         mauiAppBuilder.Services.AddTransient<ScannerPage>();
-        mauiAppBuilder.Services.AddTransient<NoInternetViewModel>();
+        mauiAppBuilder.Services.AddTransient<NoInternetPage>();
         return mauiAppBuilder;
     }
     static DecompressionMethods GetDecompressionMethods() => DecompressionMethods.Deflate | DecompressionMethods.GZip;

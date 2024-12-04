@@ -1,0 +1,4 @@
+﻿mutation SyncCustomers($customersListInput: [CustomerTableInput]) 
+{
+  syncCustomersFromPhone(customerTables: $customersListInput)
+}

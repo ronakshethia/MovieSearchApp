@@ -48,7 +48,6 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
 
     #region CONSTRUCTORS
 
-
     public SearchMovieViewModel(IMovieService movieService)
     {
         _movieService = movieService;
@@ -175,7 +174,36 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
         var list3 = AppMasters.ProductTypesList;
 
 
+        //Search Customer with Mobile Number 
         var customerDetails = await services.GetCustomerDetailsByPhoneNumber("9870897390");
+
+        //Create Customer
+        var addNewCustomer = await services.CreateCustomerAsync(new CustomerDetails
+        {
+            Name = "Test User",
+            PhoneNumber = "9999998878",
+            AltPhoneNumber = string.Empty,
+            CreatedOn = DateTime.Now
+        });
+
+        //Create Customer By Sync all contacts from phone 
+        var customers = await services.SyncCustomersAsync(new List<CustomerDetails> 
+        { 
+            new CustomerDetails 
+            {
+             Name = "Test 2",
+              PhoneNumber = "7657575757",
+               AltPhoneNumber = "068757657"
+            }, new CustomerDetails 
+            {
+                 Name = "Test 3",
+              PhoneNumber = "46436436",
+               AltPhoneNumber = "47457457"
+            }
+        });
+
+
+        var customerDetails1 = await services.GetCustomerDetailsByPhoneNumber("46436436");
 
 
         //bool allowed = await BarcodeScanner.Mobile.Methods.AskForRequiredPermission();

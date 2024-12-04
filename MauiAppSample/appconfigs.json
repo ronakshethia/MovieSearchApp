@@ -1,0 +1,4 @@
+{
+  "GRAPHQL_API_URL": "http://192.168.100.142:5000/graphql/",
+  "FIREBASE_API_KEY": "AIzaSyAADKY3ZMNdqjjWSSK3bEKuF5XUJifOHiA"
+}
