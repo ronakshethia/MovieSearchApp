@@ -1,0 +1,11 @@
+﻿query GetCustomerDetailsByMobileNumber($mobileNumber: String)
+{     
+  customerDetails( mobileNumber: $mobileNumber)
+     {
+          id,
+          name, createdOn, phoneNumber, altPhoneNumber, createdOn ,customerTickets 
+          {
+             ticketId, paymentId, tokenNumber,  customerId, submissionDateTime
+          }
+     }
+}

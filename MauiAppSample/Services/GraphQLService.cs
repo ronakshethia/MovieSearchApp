@@ -13,6 +13,22 @@ namespace MauiAppSample.Services
             _client = client;
         }
 
+        public async Task<CustomerDetails> GetCustomerDetailsByPhoneNumber(string phoneNumber)
+        {
+            var result = await _client.GetCustomerDetailsByMobileNumber.ExecuteAsync(phoneNumber).ConfigureAwait(false);
+            var customerDetails =  result.Data.CustomerDetails;
+
+            return new CustomerDetails
+            {
+                 AltPhoneNumber = customerDetails.AltPhoneNumber,
+                  CreatedOn = customerDetails.CreatedOn,
+                   Id = customerDetails.Id,
+                    Name = customerDetails.Name,
+                     PhoneNumber = phoneNumber
+                     // CustomerTickets = new  List<object>().AddRange()
+            };
+        }
+
         public async Task<AppMenu> GetAppMenusAsync()
         {
             List<AppMenuItems> appMenuItems = new List<AppMenuItems>();
@@ -20,7 +36,6 @@ namespace MauiAppSample.Services
             result.EnsureNoErrors();
             return new AppMenu(result.Data?.AllAppMenus);
         }
-
 
         public async Task<AppMasters> GetAppsAllMastersAsync()
         {

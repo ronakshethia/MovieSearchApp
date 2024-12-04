@@ -89,6 +89,7 @@ type CustomerTable {
   phoneNumber: String!
   altPhoneNumber: String!
   createdOn: DateTime!
+  customerTickets: [TicketTable]
 }
 
 type Masters {
@@ -110,6 +111,7 @@ input CustomerTableInput {
   name: String!
   phoneNumber: String!
   altPhoneNumber: String!
+  customerTickets: [TicketTableInput]
 }
 
 scalar UUID

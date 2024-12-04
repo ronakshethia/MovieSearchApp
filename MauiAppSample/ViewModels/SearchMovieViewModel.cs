@@ -175,6 +175,9 @@ public partial class SearchMovieViewModel : BaseViewModel, IRecipient<WeakRefere
         var list3 = AppMasters.ProductTypesList;
 
 
+        var customerDetails = await services.GetCustomerDetailsByPhoneNumber("9870897390");
+
+
         //bool allowed = await BarcodeScanner.Mobile.Methods.AskForRequiredPermission();
         //if (allowed)
         //{
